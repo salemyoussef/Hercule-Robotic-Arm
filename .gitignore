@@ -1,0 +1,24 @@
+﻿# ROS 2 build directories
+build/
+install/
+log/
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# PlatformIO build directories
+.pio/
+firmware/esp32/.pio/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE & OS
+.vscode/
+.idea/
+.claude/
+*.log
+Thumbs.db
+.DS_Store

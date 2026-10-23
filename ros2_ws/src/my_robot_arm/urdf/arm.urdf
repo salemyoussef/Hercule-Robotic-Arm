@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<robot name="hercule_2000">
+
+  <link name="base_link">
+    <visual>
+      <geometry><cylinder radius="0.12" length="0.05"/></geometry>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <material name="grey"><color rgba="0.6 0.6 0.6 1"/></material>
+    </visual>
+  </link>
+
+  <link name="link1">
+    <visual>
+      <geometry><box size="0.10 0.08 0.15"/></geometry>
+      <origin xyz="0 0 0.075" rpy="0 0 0"/>
+      <material name="dark"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="link2">
+    <visual>
+      <geometry><box size="0.05 0.04 0.25"/></geometry>
+      <origin xyz="0 0 0.125" rpy="0 0 0"/>
+      <material name="silver"><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="link3">
+    <visual>
+      <geometry><box size="0.045 0.035 0.25"/></geometry>
+      <origin xyz="0 0 0.125" rpy="0 0 0"/>
+      <material name="silver"><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j3" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 0.25" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="link4">
+    <visual>
+      <geometry><cylinder radius="0.025" length="0.10"/></geometry>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <material name="dark"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j4" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0 0 0.25" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="link5">
+    <visual>
+      <geometry><box size="0.06 0.08 0.08"/></geometry>
+      <origin xyz="0 0 0.04" rpy="0 0 0"/>
+      <material name="orange"><color rgba="0.9 0.5 0.1 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j5" type="revolute">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0 0 0.10" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="5" velocity="1.0"/>
+  </joint>
+
+  <link name="gripper_base">
+    <visual>
+      <geometry><box size="0.06 0.07 0.04"/></geometry>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <material name="dark"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j_gripper" type="fixed">
+    <parent link="link5"/>
+    <child link="gripper_base"/>
+    <origin xyz="0 0 0.08" rpy="0 0 0"/>
+  </joint>
+
+  <link name="finger_left">
+    <visual>
+      <geometry><box size="0.012 0.015 0.08"/></geometry>
+      <origin xyz="0 0 0.04" rpy="0 0 0"/>
+      <material name="copper"><color rgba="0.7 0.4 0.1 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j_finger_left" type="revolute">
+    <parent link="gripper_base"/>
+    <child link="finger_left"/>
+    <origin xyz="-0.025 0 0.04" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="5" velocity="1.0"/>
+  </joint>
+
+  <link name="finger_right">
+    <visual>
+      <geometry><box size="0.012 0.015 0.08"/></geometry>
+      <origin xyz="0 0 0.04" rpy="0 0 0"/>
+      <material name="copper"><color rgba="0.7 0.4 0.1 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="j_finger_right" type="revolute">
+    <parent link="gripper_base"/>
+    <child link="finger_right"/>
+    <origin xyz="0.025 0 0.04" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="5" velocity="1.0"/>
+    <mimic joint="j_finger_left" multiplier="-1.0" offset="0.0"/>
+  </joint>
+
+</robot>

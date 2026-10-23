@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: my_robot_arm
+    relative_path: urdf/arm.urdf
+  srdf:
+    relative_path: config/hercule_2000.srdf
+  package_settings:
+    author_name: salemyoussef
+    author_email: salemyoussef@users.noreply.github.com
+    generated_timestamp: 1791185714
